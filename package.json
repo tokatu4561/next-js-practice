@@ -6,9 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "date-fns": "^2.28.0",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
-  }
+    "react-dom": "17.0.2",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1"
+  },
+  "name": "nextjs-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tokatu4561/next-js-practice.git",
+  "author": "tokatu4561 <ryobsk4561@gmail.com>",
+  "license": "MIT"
 }
