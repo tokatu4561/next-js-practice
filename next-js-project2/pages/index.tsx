@@ -23,6 +23,14 @@ export default function HomePage({ meetups }) {
   return <MeetupList meetups={meetups}></MeetupList>;
 }
 
+// export async function getServerSideProps() {
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// }
+
 // export async function getStaticProps() {
 //   return {
 //     props: {
