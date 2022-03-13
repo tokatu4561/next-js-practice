@@ -19,5 +19,10 @@
   "main": "index.js",
   "repository": "https://github.com/tokatu4561/next-js-practice.git",
   "author": "tokatu4561 <ryobsk4561@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.40",
+    "typescript": "^4.6.2"
+  }
 }
