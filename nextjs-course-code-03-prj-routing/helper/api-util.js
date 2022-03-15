@@ -1,15 +1,16 @@
 export async function getAllEvents() {
-  const response = await fetch();
+  const response = await fetch(
+    "https://nex-js-practice-default-rtdb.firebaseio.com/events.json"
+  );
   const data = await response.json();
 
   const events = [];
 
   for (const key in data) {
-    events,
-      push({
-        id: key,
-        ...data[key],
-      });
+    events.push({
+      id: key,
+      ...data[key],
+    });
   }
 
   return events;
@@ -21,7 +22,7 @@ export async function getFeaturedEvents() {
   return allEvents.filter((event) => event.isFeatured);
 }
 
-export function getEventById(id) {
+export async function getEventById(id) {
   const allEvents = await getAllEvents();
 
   return allEvents.filter((event) => event.id === id);
