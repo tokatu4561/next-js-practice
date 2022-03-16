@@ -1,6 +1,10 @@
 import { Fragment } from "react";
 
-import { getEventById, getFeaturedEvents } from "../../helper/api-util";
+import {
+  getAllEvents,
+  getEventById,
+  getFeaturedEvents,
+} from "../../helper/api-util";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
@@ -55,6 +59,21 @@ export async function getStaticPaths() {
     paths: paths,
     fallback: "blocking",
   };
+}
+
+export async function getFilteredEvents(dateFilter) {
+  const { year, month } = dateFilter;
+
+  const allEvents = await getAllEvents();
+
+  let filteredEvents = allEvents.filter((event) => {
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
+    );
+  });
+
+  return filteredEvents;
 }
 
 export default EventDetailPage;
