@@ -1,3 +1,5 @@
+import { MongoClient } from "mongodb";
+
 function handler(req, res) {
   if (req.method === "POST") {
     const userEmail = req.body.email;
@@ -7,6 +9,17 @@ function handler(req, res) {
       return;
     }
 
+    MongoClient.connect(
+      "mongodb+srv://testUser:test1234@cluster0.nzvx0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    ).then((client) => {
+      const db = client.db();
+
+      console.log(1);
+      //   db.collection("emails");
+    });
+
     res.status(201).json({ message: "成功しました！" });
   }
 }
+
+export default handler;
