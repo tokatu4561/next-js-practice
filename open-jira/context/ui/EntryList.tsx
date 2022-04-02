@@ -28,7 +28,9 @@ export const EntryList: FC<Props> = ({ status }) => {
         }}
       >
         <List>
-          <EntryCard />
+          {entriesByStatus.map((entry) => (
+            <EntryCard key={entry._id} entry={entry} />
+          ))}
         </List>
       </Paper>
     </div>

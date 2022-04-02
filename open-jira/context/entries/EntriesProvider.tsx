@@ -17,13 +17,13 @@ const Entries_INITIAL_STATE: EntriesState = {
     },
     {
       _id: uuidv4(),
-      description: "練習中です",
+      description: "途中",
       status: "in-progress",
       createdAt: Date.now() - 10000,
     },
     {
       _id: uuidv4(),
-      description: "練習中です",
+      description: "完了しました",
       status: "finished",
       createdAt: Date.now() - 10000,
     },

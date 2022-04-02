@@ -9,23 +9,22 @@ const HomePage: NextPage = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4}>
           <Card sx={{ height: "calc(100vh - 100px )" }}>
-            <CardHeader title="Pendientes" />
-
-            <CardContent>
-              <EntryList />
-            </CardContent>
+            <CardHeader title="実施前" />
+            <EntryList status="pending" />
           </Card>
         </Grid>
 
         <Grid item xs={12} sm={4}>
           <Card sx={{ height: "calc(100vh - 100px )" }}>
-            <CardHeader title="En Progreso" />
+            <CardHeader title="実施中" />
+            <EntryList status="in-progress" />
           </Card>
         </Grid>
 
         <Grid item xs={12} sm={4}>
           <Card sx={{ height: "calc(100vh - 100px )" }}>
-            <CardHeader title="Completadas" />
+            <CardHeader title="完了" />
+            <EntryList status="finished" />
           </Card>
         </Grid>
       </Grid>
