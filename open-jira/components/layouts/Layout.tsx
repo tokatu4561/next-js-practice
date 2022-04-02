@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { Box } from "@mui/material";
 import { Navbar } from "../ui/Navbar";
+import { Sidebar } from "../ui/SideBar";
 
 interface Props {
   title?: string;
