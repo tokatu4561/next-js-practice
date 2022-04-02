@@ -30,25 +30,31 @@ const Entries_INITIAL_STATE: EntriesState = {
   ],
 };
 
-type UIActionType =
-  | { type: "UI - Open Sidebar" }
-  | { type: "UI - Close Sidebar" };
+type EntriesActionType =
+  | { type: "[Entry] Add-Entry"; payload: Entry }
+  | { type: "[Entry] Entry-Updated"; payload: Entry };
 
 const entriesReducer = (
-  state: UIState,
-  action: UIActionType
-): Entries_INITIAL_STATE => {
+  state: EntriesState,
+  action: EntriesActionType
+): EntriesState => {
   switch (action.type) {
-    case "UI - Open Sidebar":
+    case "[Entry] Add-Entry":
       return {
         ...state,
-        sidemenuOpen: true,
+        entries: [...state.entries, action.payload],
       };
 
-    case "UI - Close Sidebar":
+    case "[Entry] Entry-Updated":
       return {
         ...state,
-        sidemenuOpen: false,
+        entries: state.entries.map((entry) => {
+          if (entry._id === action.payload._id) {
+            entry.status = action.payload.status;
+            entry.description = action.payload.description;
+          }
+          return entry;
+        }),
       };
 
     default:
