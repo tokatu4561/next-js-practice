@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const EntryList: FC<Props> = ({ status }) => {
-  const { entries } = useContext(EntriesContext);
+  const { entries, updateEntry } = useContext(EntriesContext);
   const { isDragging, endDragging } = useContext(UIContext);
 
   const entriesByStatus = useMemo(
@@ -30,6 +30,7 @@ export const EntryList: FC<Props> = ({ status }) => {
 
     const entry = entries.find((e) => e._id === id)!;
     entry.status = status;
+    updateEntry(entry);
     endDragging();
   };
 

@@ -19,13 +19,13 @@ const Entries_INITIAL_STATE: EntriesState = {
       _id: uuidv4(),
       description: "途中",
       status: "in-progress",
-      createdAt: Date.now() - 10000,
+      createdAt: Date.now(),
     },
     {
       _id: uuidv4(),
       description: "完了しました",
       status: "finished",
-      createdAt: Date.now() - 10000,
+      createdAt: Date.now(),
     },
   ],
 };
@@ -76,11 +76,16 @@ export const EntriesProvider: FC = ({ children }) => {
     dispatch({ type: "[Entry] Add-Entry", payload: newEntry });
   };
 
+  const updateEntry = (entry: Entry) => {
+    dispatch({ type: "[Entry] Entry-Updated", payload: entry });
+  };
+
   return (
     <EntriesContext.Provider
       value={{
         ...state,
         addNewEntry,
+        updateEntry,
       }}
     >
       {children}
