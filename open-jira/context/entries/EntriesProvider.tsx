@@ -1,8 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
 import { FC, useEffect, useReducer } from "react";
 import { Entry } from "../../interfaces/entry";
 import { EntriesContext } from "./EntriesContext";
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 export interface EntriesState {
   entries: Entry[];
@@ -54,15 +53,10 @@ const entriesReducer = (
 export const EntriesProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE);
 
-  const addNewEntry = (description: string) => {
-    const newEntry: Entry = {
-      _id: uuidv4(),
-      description,
-      status: "pending",
-      createdAt: Date.now(),
-    };
+  const addNewEntry = async (description: string) => {
+    const { data } = await axios.post<Entry>("/api/entries", { description });
 
-    dispatch({ type: "[Entry] Add-Entry", payload: newEntry });
+    dispatch({ type: "[Entry] Add-Entry", payload: data });
   };
 
   const updateEntry = (entry: Entry) => {
