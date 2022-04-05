@@ -1,38 +1,21 @@
 import { v4 as uuidv4 } from "uuid";
-import { FC, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import { Entry } from "../../interfaces/entry";
 import { EntriesContext } from "./EntriesContext";
+import axios from "axios";
 
 export interface EntriesState {
   entries: Entry[];
 }
 
 const Entries_INITIAL_STATE: EntriesState = {
-  entries: [
-    {
-      _id: uuidv4(),
-      description: "練習中です",
-      status: "pending",
-      createdAt: Date.now(),
-    },
-    {
-      _id: uuidv4(),
-      description: "途中",
-      status: "in-progress",
-      createdAt: Date.now(),
-    },
-    {
-      _id: uuidv4(),
-      description: "完了しました",
-      status: "finished",
-      createdAt: Date.now(),
-    },
-  ],
+  entries: [],
 };
 
 type EntriesActionType =
   | { type: "[Entry] Add-Entry"; payload: Entry }
-  | { type: "[Entry] Entry-Updated"; payload: Entry };
+  | { type: "[Entry] Entry-Updated"; payload: Entry }
+  | { type: "[Entry] Refresh-Data"; payload: Entry[] };
 
 const entriesReducer = (
   state: EntriesState,
@@ -57,6 +40,12 @@ const entriesReducer = (
         }),
       };
 
+    case "[Entry] Refresh-Data":
+      return {
+        ...state,
+        entries: [...action.payload],
+      };
+
     default:
       return state;
   }
@@ -79,6 +68,15 @@ export const EntriesProvider: FC = ({ children }) => {
   const updateEntry = (entry: Entry) => {
     dispatch({ type: "[Entry] Entry-Updated", payload: entry });
   };
+
+  const refreshEntries = async () => {
+    const { data } = await axios.get<Entry[]>("/api/entries");
+    dispatch({ type: "[Entry] Refresh-Data", payload: data });
+  };
+
+  useEffect(() => {
+    refreshEntries();
+  }, []);
 
   return (
     <EntriesContext.Provider
