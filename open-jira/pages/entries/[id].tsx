@@ -28,7 +28,7 @@ interface Props {
   entry: Entry;
 }
 
-const EntryPage: FC<Props> = ({ entry }) => {
+export const EntryPage: FC<Props> = ({ entry }) => {
   const { updateEntry } = useContext(EntriesContext);
 
   const [inputValue, setInputValue] = useState(entry.description);
@@ -51,13 +51,13 @@ const EntryPage: FC<Props> = ({ entry }) => {
   const onSave = () => {
     if (inputValue.trim().length === 0) return;
 
-    const updatedEntry = {
+    const updatedEntry: Entry = {
       ...entry,
       description: inputValue,
       status: status,
     };
 
-    updateEntry(updatedEntry);
+    updateEntry(updatedEntry, true);
   };
 
   return (
@@ -97,7 +97,7 @@ const EntryPage: FC<Props> = ({ entry }) => {
 
             <CardActions>
               <Button
-                onChange={onSave}
+                onClick={onSave}
                 startIcon={<SaveOutlined />}
                 disabled={isNotValid}
                 fullWidth
@@ -138,8 +138,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   return {
-    props: entry,
+    props: {
+      entry,
+    },
   };
 };
-
 export default EntryPage;

@@ -2,6 +2,7 @@ import { FC, useEffect, useReducer } from "react";
 import { Entry } from "../../interfaces/entry";
 import { EntriesContext } from "./EntriesContext";
 import axios, { Axios } from "axios";
+import { useSnackbar } from "notistack";
 
 export interface EntriesState {
   entries: Entry[];
@@ -51,6 +52,8 @@ const entriesReducer = (
 };
 
 export const EntriesProvider: FC = ({ children }) => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE);
 
   const addNewEntry = async (description: string) => {
@@ -59,16 +62,26 @@ export const EntriesProvider: FC = ({ children }) => {
     dispatch({ type: "[Entry] Add-Entry", payload: data });
   };
 
-  const updateEntry = async (entry: Entry) => {
+  const updateEntry = async (entry: Entry, isShowSnackBar = false) => {
     const { _id, description, status } = entry;
 
     try {
-      const { data } = await axios.put<Entry>(`api/entries/${_id}`, {
+      const { data } = await axios.put<Entry>(`/api/entries/${_id}`, {
         description,
         status,
       });
 
       dispatch({ type: "[Entry] Entry-Updated", payload: data });
+
+      if (isShowSnackBar)
+        enqueueSnackbar("Entrada actualizada", {
+          variant: "success",
+          autoHideDuration: 1500,
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right",
+          },
+        });
     } catch (error) {
       console.log({ error });
     }
