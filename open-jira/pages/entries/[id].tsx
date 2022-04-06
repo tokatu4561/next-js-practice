@@ -17,15 +17,22 @@ import {
 import { Layout } from "../../components/layouts/Layout";
 import { SaveOutlined } from "@mui/icons-material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import { EntryStatus } from "../../interfaces/entry";
-import { ChangeEvent, useMemo, useState } from "react";
-import axios from "axios";
+import { Entry, EntryStatus } from "../../interfaces/entry";
+import { ChangeEvent, FC, useContext, useMemo, useState } from "react";
+import { dbEntries } from "../../database";
+import { EntriesContext } from "../../context/entries/EntriesContext";
 
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];
 
-const EntryPage: NextPage = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [status, setStatus] = useState<EntryStatus>("pending");
+interface Props {
+  entry: Entry;
+}
+
+const EntryPage: FC<Props> = ({ entry }) => {
+  const { updateEntry } = useContext(EntriesContext);
+
+  const [inputValue, setInputValue] = useState(entry.description);
+  const [status, setStatus] = useState<EntryStatus>(entry.status);
   const [touched, setTouched] = useState(false);
 
   const isNotValid = useMemo(
@@ -43,6 +50,14 @@ const EntryPage: NextPage = () => {
 
   const onSave = () => {
     if (inputValue.trim().length === 0) return;
+
+    const updatedEntry = {
+      ...entry,
+      description: inputValue,
+      status: status,
+    };
+
+    updateEntry(updatedEntry);
   };
 
   return (
@@ -111,7 +126,7 @@ const EntryPage: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params as { id: string };
 
-  const entry = await axios.get(`/api/entries/${id}`);
+  const entry = await dbEntries.getEntryById(id);
 
   if (!entry) {
     return {
@@ -126,4 +141,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     props: entry,
   };
 };
+
 export default EntryPage;
