@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { DragEvent, FC, useContext } from "react";
 import { Entry } from "../../interfaces/entry";
-import { UIContext } from "./UIContext";
+import { UIContext } from "../../context/ui/UIContext";
 
 interface Props {
   entry: Entry;

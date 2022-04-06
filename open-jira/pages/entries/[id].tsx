@@ -19,7 +19,6 @@ import { SaveOutlined } from "@mui/icons-material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { EntryStatus } from "../../interfaces/entry";
 import { ChangeEvent, useMemo, useState } from "react";
-import { EntryModel } from "../../models";
 import axios from "axios";
 
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];

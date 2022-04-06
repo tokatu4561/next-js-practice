@@ -2,9 +2,9 @@ import { List, Paper } from "@mui/material";
 import React, { DragEvent, FC, useContext, useMemo } from "react";
 
 import { EntryStatus } from "../../interfaces/entry";
-import { EntriesContext } from "../entries/EntriesContext";
+import { EntriesContext } from "../../context/entries/EntriesContext";
 import { EntryCard } from "./EntryCard";
-import { UIContext } from "./UIContext";
+import { UIContext } from "../../context/ui/UIContext";
 
 import styles from "./EntryList.module.css";
 
