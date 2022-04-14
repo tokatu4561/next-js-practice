@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Header from "../components/Header";
+import { SearchIcon, MicrophoneIcon } from "@heroicons/react/outline";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +13,30 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* header */}
       <Header></Header>
+      {/* body */}
+      <form className="mt-40 flex flex-col items-center">
+        <Image
+          width="300"
+          height="100"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
+        />
+        <div className="flex mx-auto w-full mt-4 py-2 max-w-[90%] border border-gary-200  hover:shadow-lg focus-within:shadow-lg">
+          <SearchIcon className="h-5 text-gray-500" />
+          <input
+            type="text"
+            className="flex-grow focus:outline-none"
+            name=""
+            id=""
+          />
+          <MicrophoneIcon className="h-5" />
+        </div>
+        <div className="flex flex-col sm:flex-row w-[50%] space-y-2 mt-8 sm:space-y-0 sm:space-x-4 justify-center">
+          <button className="btn">検索</button>
+          <button className="btn">I'm Feeling Lucky</button>
+        </div>
+      </form>
     </div>
   );
 };
