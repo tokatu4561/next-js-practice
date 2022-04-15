@@ -2,6 +2,7 @@ import { MicrophoneIcon, SearchIcon, XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { SearchHeaderOptions } from "./SearchHeaderOptions";
 import { User } from "./User";
 
 export default function SearchHeader() {
@@ -14,8 +15,8 @@ export default function SearchHeader() {
   };
 
   return (
-    <header className="flex justify-between p-5 text-gray-700">
-      <div className="flex items-center w-full">
+    <header className="sticky top-0 bg-white">
+      <div className="flex items-center w-full p-8">
         <Image
           onClick={() => router.push("/")}
           width="120"
@@ -44,6 +45,7 @@ export default function SearchHeader() {
         </form>
         <User className="ml-auto whitespace-nowrap" />
       </div>
+      <SearchHeaderOptions />
     </header>
   );
 }
