@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
+import { ImageResults } from "../components/ImageResults";
 import { PaginationButtons } from "../components/PaginationButtons";
 import SearchHeader from "../components/SearchHeader";
 import { SearchResults } from "../components/SearchResults";
@@ -23,7 +24,11 @@ export default function Search({ results }: Props) {
 
       <SearchHeader />
 
-      <SearchResults results={results} />
+      {router.query.searchType === "image" ? (
+        <ImageResults results={results} />
+      ) : (
+        <SearchResults results={results} />
+      )}
     </div>
   );
 }
