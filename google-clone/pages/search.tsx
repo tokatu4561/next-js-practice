@@ -16,6 +16,8 @@ interface Props {
 export default function Search({ results }: Props) {
   const router = useRouter();
 
+  console.log(results);
+
   return (
     <div>
       <Head>
@@ -34,7 +36,7 @@ export default function Search({ results }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const mockData = true;
+  const mockData = false;
   const startIndex = context.query.start || "1";
 
   const data = mockData
