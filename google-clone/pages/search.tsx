@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
+import { PaginationButtons } from "../components/PaginationButtons";
 import SearchHeader from "../components/SearchHeader";
 import { SearchResults } from "../components/SearchResults";
 import Response from "../Response";

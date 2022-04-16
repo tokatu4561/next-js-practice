@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Parser from "html-react-parser";
 import { GoogleApiResults } from "../types/google-api-type";
+import { PaginationButtons } from "./PaginationButtons";
 
 interface Props {
   results: GoogleApiResults;
@@ -29,6 +30,8 @@ export const SearchResults: FC<Props> = ({ results }) => {
           <p className="text-gray-600">{Parser(result.htmlSnippet)}</p>
         </div>
       ))}
+
+      <PaginationButtons />
     </div>
   );
 };
