@@ -8,10 +8,18 @@ import { User } from "./User";
 export default function SearchHeader() {
   const router = useRouter();
 
-  const [enterdValue, setEnterdValue] = useState("");
+  const [enterdValue, setEnterdValue] = useState(router.query.term);
 
   const onChangeValue = (event: any) => {
     setEnterdValue(event.target.value);
+  };
+
+  const onSearch = (event: any) => {
+    event.preventDefault();
+
+    if (!enterdValue) return;
+
+    router.push(`/search?term=${enterdValue}&searchType=`);
   };
 
   return (
@@ -25,7 +33,10 @@ export default function SearchHeader() {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
         />
 
-        <form className="flex border border-gray-200 rounded-full shadow-lg px-6 py-3 ml-8 mr-4 flex-grow">
+        <form
+          onSubmit={onSearch}
+          className="flex border border-gray-200 rounded-full shadow-lg px-6 py-3 ml-8 mr-4 flex-grow"
+        >
           <input
             type="text"
             value={enterdValue}
@@ -42,6 +53,7 @@ export default function SearchHeader() {
           />
           <MicrophoneIcon className="h-6 hidden sm:inline-flex text-blue-500 pl-4 border-l-2 border-gray-300 mr-3" />
           <SearchIcon className="h-6 hidden sm:inline-flex text-blue-500" />
+          <button type="submit" hidden></button>
         </form>
         <User className="ml-auto whitespace-nowrap" />
       </div>
