@@ -16,10 +16,11 @@ export default function SearchHeader() {
 
   const onSearch = (event: any) => {
     event.preventDefault();
+    const startIndex = router.query.start || "1";
 
     if (!enterdValue) return;
 
-    router.push(`/search?term=${enterdValue}&searchType=`);
+    router.push(`/search?term=${enterdValue}&searchType=&start=${startIndex}`);
   };
 
   return (
