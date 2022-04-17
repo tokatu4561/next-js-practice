@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, { FC, ReactNode } from "react";
+import { Navbar } from "../ui/Navbar";
 
 interface Props {
   title: string;
@@ -27,9 +28,18 @@ export const ShopLayout: FC<Props> = ({
         {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
 
-      <nav>{/* TODO: nab menu  */}</nav>
+      <nav>
+        <Navbar />
+      </nav>
 
-      <main>{children}</main>
+      <main
+        style={{
+          margin: "80px auto",
+          padding: "0 30px",
+        }}
+      >
+        {children}
+      </main>
 
       {/* Footer */}
       <footer>{/* TODO: mi custom footer */}</footer>
