@@ -26,7 +26,7 @@ export const Navbar = () => {
 
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           <Link href="/category/men">
-            <a>
+            <a href="/category/men">
               <Button>Men</Button>
             </a>
           </Link>
