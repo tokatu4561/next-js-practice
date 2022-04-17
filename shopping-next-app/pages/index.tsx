@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
       <Grid container spacing={4}>
         {initialData.products.map((product) => (
-          <Grid item xs={6} key={product.slug}>
+          <Grid item xs={4} key={product.slug}>
             <Card>
               <CardActionArea>
                 <CardMedia
