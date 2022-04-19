@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { ShopLayout } from "../../components/layouts/ShopLayout";
 import { ProductSlideshow } from "../../components/products/ProductSlideshow";
+import { ItemCounter } from "../../components/ui/ItemCounter";
 import { initialData } from "../../database/products";
 
 const product = initialData.products[0];
@@ -18,10 +19,13 @@ const Product = () => {
           <Typography variant="h1" component="h1">
             {product.title}
           </Typography>
+
           <Typography
             variant="subtitle1"
             component="h2"
           >{`$${product.price}`}</Typography>
+
+          <ItemCounter></ItemCounter>
 
           <Button color="secondary" className="circular-btn">
             カートに追加する
