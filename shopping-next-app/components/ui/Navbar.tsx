@@ -25,11 +25,7 @@ export const Navbar = () => {
         <Box flex={1} />
 
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          <Link href="/category/men">
-            <a href="/category/men">
-              <Button>Men</Button>
-            </a>
-          </Link>
+          <Link href="/category/men">a</Link>
           <Link href="/category/women">
             <a>
               <Button>Women</Button>
