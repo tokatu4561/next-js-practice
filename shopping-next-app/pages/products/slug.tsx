@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { ShopLayout } from "../../components/layouts/ShopLayout";
 import { ProductSlideshow } from "../../components/products/ProductSlideshow";
+import { SizeSelector } from "../../components/products/SizeSelector";
 import { ItemCounter } from "../../components/ui/ItemCounter";
 import { initialData } from "../../database/products";
 
@@ -25,7 +26,15 @@ const Product = () => {
             component="h2"
           >{`$${product.price}`}</Typography>
 
-          <ItemCounter></ItemCounter>
+          {/* カートに追加する商品の量 */}
+          <Box>
+            <Typography variant="subtitle1">量</Typography>
+            <ItemCounter></ItemCounter>
+            <SizeSelector
+              selectedSize={product.sizes[0]}
+              sizes={product.sizes}
+            />
+          </Box>
 
           <Button color="secondary" className="circular-btn">
             カートに追加する
