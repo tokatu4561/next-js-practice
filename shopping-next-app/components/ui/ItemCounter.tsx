@@ -6,7 +6,7 @@ interface Props {}
 
 export const ItemCounter = () => {
   return (
-    <Box>
+    <Box display="flex" alignItems="center">
       <IconButton>
         <RemoveCircleOutline />
       </IconButton>
