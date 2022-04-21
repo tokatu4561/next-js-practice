@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { CartList } from "../../components/cart/CartList";
+import { OrderSummary } from "../../components/cart/OrderSummary";
 import { ShopLayout } from "../../components/layouts/ShopLayout";
 
 const CartPage = () => {
@@ -29,6 +30,7 @@ const CartPage = () => {
               <Typography variant="h2">詳細</Typography>
               <Divider sx={{ my: 1 }} />
 
+              <OrderSummary />
               {/* カート内の商品の内訳 */}
               <Button sx={{ mt: 3 }} color="secondary" fullWidth>
                 注文する

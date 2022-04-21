@@ -18,6 +18,10 @@ const productsInCart = [
   initialData.products[2],
 ];
 
+interface Props {
+  editable: boolean;
+}
+
 export const CartList = () => {
   return (
     <>
