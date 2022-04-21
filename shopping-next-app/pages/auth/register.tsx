@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import React from "react";
 import { AuthLayout } from "../../components/layouts/AuthLayout";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <AuthLayout title="ログイン">
       <Box sx={{ width: 350 }}>
@@ -23,14 +23,18 @@ const LoginPage = () => {
           </Grid>
 
           <Grid item xs={12}>
+            <TextField label="パスワード確認" type="password" fullWidth />
+          </Grid>
+
+          <Grid item xs={12}>
             <Button color="secondary" className="circular-btn" fullWidth>
               ログイン
             </Button>
           </Grid>
 
           <Grid item xs={12} display="flex" justifyContent="end">
-            <NextLink href="/auth/register" passHref>
-              <Link underline="always">アカウントを持っていませんか？</Link>
+            <NextLink href="/auth/login" passHref>
+              <Link underline="always">既にアカウントをお持ちですか？</Link>
             </NextLink>
           </Grid>
         </Grid>
@@ -39,4 +43,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
