@@ -1,4 +1,5 @@
 import React from "react";
+import { Posts } from "./Posts";
 import Stories from "./Stories";
 
 export const Feed = () => {
@@ -8,6 +9,7 @@ export const Feed = () => {
         {/* ストーリー */}
         <Stories />
         {/* 投稿 */}
+        <Posts />
       </section>
     </main>
   );
