@@ -1,4 +1,9 @@
-import { DotsHorizontalIcon } from "@heroicons/react/outline";
+import {
+  BookmarkAltIcon,
+  ChatIcon,
+  DotsHorizontalIcon,
+  HeartIcon,
+} from "@heroicons/react/outline";
 import React, { FC } from "react";
 import { PostType } from "../types/Post";
 
@@ -24,6 +29,15 @@ export const Post: FC<Props> = ({ post }) => {
       {/* post image */}
       <div className="">
         <img className="max-h-screen w-full object-cover " src={img} alt="" />
+      </div>
+
+      {/* post buttons */}
+      <div className="flex justify-between px-4">
+        <div className="flex">
+          <HeartIcon className="btn" />
+          <ChatIcon className="btn" />
+        </div>
+        <BookmarkAltIcon className="btn" />
       </div>
     </div>
   );
