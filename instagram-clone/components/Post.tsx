@@ -2,6 +2,7 @@ import {
   BookmarkAltIcon,
   ChatIcon,
   DotsHorizontalIcon,
+  EmojiHappyIcon,
   HeartIcon,
 } from "@heroicons/react/outline";
 import React, { FC } from "react";
@@ -12,7 +13,8 @@ interface Props {
 }
 
 export const Post: FC<Props> = ({ post }) => {
-  const { userName, userImg, img } = post;
+  const { userName, userImg, img, caption } = post;
+
   return (
     <div className="bg-white border mt-4">
       {/* post header */}
@@ -39,6 +41,24 @@ export const Post: FC<Props> = ({ post }) => {
         </div>
         <BookmarkAltIcon className="btn" />
       </div>
+
+      {/* post comments */}
+      <p className="p-5 truncate">
+        <span className="font-bold">{userName}</span>
+        {caption}
+      </p>
+
+      {/* post input box */}
+      <form className="flex items-center p-4">
+        <EmojiHappyIcon className="h-8" />
+        <input
+          className="border-none flex-1 focus:ring-0"
+          type="text"
+          name=""
+          placeholder="入力してください"
+        />
+        <button className="text-blue-400 font-bold">Post</button>
+      </form>
     </div>
   );
 };
