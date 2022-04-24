@@ -2,6 +2,7 @@ import React from "react";
 import { MiniProfile } from "./MiniProfile";
 import { Posts } from "./Posts";
 import Stories from "./Stories";
+import { Suggestions } from "./Suggestions";
 
 export const Feed = () => {
   return (
@@ -16,6 +17,8 @@ export const Feed = () => {
       <section className="hidden md:inline-block md:col-span-1">
         <div className="fixed">
           <MiniProfile />
+
+          <Suggestions />
         </div>
       </section>
     </main>
