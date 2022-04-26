@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Feed } from "../components/Feed";
 import { Header } from "../components/Header";
+import { UploadModal } from "../components/UploadModal";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -20,6 +21,8 @@ const Home: NextPage = () => {
 
       <Feed />
       {/* モーダル */}
+
+      <UploadModal />
     </div>
   );
 };
